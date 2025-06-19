@@ -1,0 +1,156 @@
+/*-- scss:defaults --*/
+// Brand colors
+$primary: #67a9cf;
+$secondary: #ef8a62;
+$success: #2166ac;
+$info: #d1e5f0;
+$warning: #fddbc7;
+$danger: #e53e3e; 
+$light: #f7fafc;
+$dark: #1a202c; 
+
+// Base document colors
+$body-bg: #ffffff;
+$body-color: #2d3748;
+$link-color: $secondary;
+$selection-bg: rgba($primary, 0.25);
+
+// Typography
+$font-family-sans-serif: Helvetica, -apple-system, Arial, sans-serif;
+$font-family-monospace: "Fira Code", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+$headings-font-weight: 600;
+$headings-color: $primary;
+
+// Code blocks
+$code-block-bg: #f8f9fa;
+$code-color: #1a202c;
+
+// Borders
+$border-color: #e2e8f0;
+$border-radius: 4px;
+
+// Navbar
+$navbar-bg: $light;
+$navbar-fg: $dark;
+$navbar-hl: $primary;
+
+/*-- scss:rules --*/
+// General styling
+body {
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-weight: 700;
+  color: $primary;
+}
+
+.subtitle {
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Navbar customization
+.navbar {
+  border-bottom: 1px solid $border-color;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+// Code blocks
+pre {
+  border-left: 3px solid $primary;
+  background-color: #f8f9fa;
+  padding: 1rem;
+}
+
+// Images with captions
+figure {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  
+  img {
+    border-radius: $border-radius;
+  }
+  
+  figcaption {
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    color: $secondary;
+    text-align: center;
+  }
+}
+
+// Table styling
+table {
+  width: 100%;
+  margin-bottom: 1rem;
+  
+  th {
+    background-color: rgba($primary, 0.1);
+  }
+  
+  th, td {
+    padding: 0.75rem;
+    border-bottom: 1px solid $border-color;
+  }
+}
+
+// Custom callout boxes
+.callout {
+  border-radius: $border-radius;
+  border-left-width: 4px;
+  
+  &.callout-note {
+    border-left-color: $info;
+  }
+  
+  &.callout-tip {
+    border-left-color: $success;
+  }
+  
+  &.callout-warning {
+    border-left-color: $warning;
+  }
+  
+  &.callout-important {
+    border-left-color: $danger;
+  }
+}
+
+// Cards for projects
+.card {
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  .card-title {
+    color: $primary;
+  }
+}
+
+// Footer styling
+.footer {
+  border-top: 1px solid $border-color;
+  padding-top: 2rem;
+  margin-top: 3rem;
+}

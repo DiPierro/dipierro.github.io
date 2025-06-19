@@ -1,0 +1,15 @@
+{
+  "hash": "de12a6de4ae7137099e536363be1c45f",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Code: Scraping DOGE\"\ndate: \"2025-06-08\"\ncategories: [code]\n---\n\n\n\nI've been experimenting with GitHub Actions to automatically [scrape the DOGE API](https://github.com/DiPierro/doge) once a week. This should make it possible to compare snapshots of each endpoint to one another over time.\n\nYou can clone the repository and run the script `doge.sh` from the command line to download a current snapshot of each endpoint as a JSON. Or you can access every JSON file that has already been scraped as a gist, which you can then download and analyze however you see fit!\n\nFor example, here's how you might pull down the latest `contracts` JSON in R:\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Libraries\nlibrary(tidyverse)\nlibrary(jsonlite)\n\nurl_gist <- \"https://raw.githubusercontent.com/DiPierro/doge/refs/heads/main/contracts.json?token=GHSAT0AAAAAADFJ7N72SI3GWT2BBTY256562CHEOYA\"\nraw_contracts <- fromJSON(curl::curl(url_gist))\ncontracts <- map_dfr(raw_contracts, bind_rows)\n\ncontracts %>%\n  head(5) %>% \n  select(1:4) %>% \n  knitr::kable()\n```\n\n::: {.cell-output-display}\n\n\n|piid           |agency                     |vendor                       |      value|\n|:--------------|:--------------------------|:----------------------------|----------:|\n|140D0424F0005  |Department of the Interior |Family Endeavors, Inc        | 3329900357|\n|2032H524A00020 |Department of Treasury     |CENTENNIAL TECHNOLOGIES INC. | 1900000000|\n|HT001523D0002  |Department of Defense      |A1FEDIMPACT                  | 1826530973|\n|FA872624FB071  |Department of Defense      |Accenture                    | 1491605888|\n|FA701420D0007  |Department of Air Force    |Deloitte Consulting LLP      | 2750000000|\n\n\n:::\n:::\n\n\n\n\nFound a bug? Got a comment, criticism or suggestion for improvement? Drop me a note: `adipierro.edsource.org`.",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

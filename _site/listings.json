@@ -1,0 +1,27 @@
+[
+  {
+    "listing": "/docs/index.html",
+    "items": []
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/updates/post-with-code/index.html",
+      "/updates/welcome/index.html"
+    ]
+  },
+  {
+    "listing": "/work.html",
+    "items": [
+      "/work/2025-federal-research/index.html",
+      "/work/2024-enrollment/index.html"
+    ]
+  },
+  {
+    "listing": "/updates.html",
+    "items": [
+      "/updates/doge/index.html",
+      "/updates/listening-2025-06/index.html"
+    ]
+  }
+]

@@ -1,0 +1,35 @@
+---
+title: "Code: Scraping DOGE"
+date: "2025-06-08"
+categories: [code]
+---
+
+I've been experimenting with GitHub Actions to automatically [scrape the DOGE API](https://github.com/DiPierro/doge) once a week. This should make it possible to compare snapshots of each endpoint to one another over time.
+
+You can clone the repository and run the script `doge.sh` from the command line to download a JSON file of all the contracts, grants, leases or payments displayed on the DOGE website. Or you can grab the link to the most-recent JSON file the scraper has downloaded and analyze from there.
+
+For example, here's how you might pull down the latest `contracts.json` file using R:
+
+```{r}
+#| message: false
+#| warning: false
+# Libraries
+library(tidyverse)
+library(jsonlite)
+
+url_gist <- "https://raw.githubusercontent.com/DiPierro/doge/refs/heads/main/contracts.json"
+raw_contracts <- fromJSON(curl::curl(url_gist))
+contracts <- map_dfr(raw_contracts, bind_rows)
+
+contracts %>%
+  head(5) %>% 
+  select(1:4) %>% 
+  knitr::kable()
+```
+
+A word of caution: several news reports have called out errors in DOGE's accounting of its government restructuring efforts, so take care when working with this data. Here's some further reading:
+
+* _The New York Times_: [DOGE Makes Its Latest Errors Harder to Find](https://www.nytimes.com/2025/03/13/us/politics/doge-errors-funding-grants-claims.html)
+* _CBS News_: [DOGE continues to publish misleading or inaccurate claims on its "Wall of Receipts"](https://www.cbsnews.com/news/doge-wall-of-receipts-misleading-inaccurate-claims/)
+
+Found a bug? Got a comment, criticism or suggestion for improvement? Drop me a note: `adipierro.edsource.org`.

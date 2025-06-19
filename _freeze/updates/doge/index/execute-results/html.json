@@ -1,0 +1,15 @@
+{
+  "hash": "9f61d7b64cd8bdaf532a879070ac7747",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Code: Scraping DOGE\"\ndate: \"2025-06-08\"\ncategories: [code]\n---\n\n\n\nI've been experimenting with GitHub Actions to automatically [scrape the DOGE API](https://github.com/DiPierro/doge) once a week. This should make it possible to compare snapshots of each endpoint to one another over time.\n\nYou can clone the repository and run the script `doge.sh` from the command line to download a JSON file of all the contracts, grants, leases or payments displayed on the DOGE website. Or you can grab the link to the most-recent JSON file the scraper has downloaded and analyze from there.\n\nFor example, here's how you might pull down the latest `contracts.json` file using R:\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Libraries\nlibrary(tidyverse)\nlibrary(jsonlite)\n\nurl_gist <- \"https://raw.githubusercontent.com/DiPierro/doge/refs/heads/main/contracts.json\"\nraw_contracts <- fromJSON(curl::curl(url_gist))\ncontracts <- map_dfr(raw_contracts, bind_rows)\n\ncontracts %>%\n  head(5) %>% \n  select(1:4) %>% \n  knitr::kable()\n```\n\n::: {.cell-output-display}\n\n\n|piid           |agency                     |vendor                       |      value|\n|:--------------|:--------------------------|:----------------------------|----------:|\n|140D0424F0005  |Department of the Interior |Family Endeavors, Inc        | 3329900357|\n|2032H524A00020 |Department of Treasury     |CENTENNIAL TECHNOLOGIES INC. | 1900000000|\n|HT001523D0002  |Department of Defense      |A1FEDIMPACT                  | 1826530973|\n|FA872624FB071  |Department of Defense      |Accenture                    | 1491605888|\n|FA701420D0007  |Department of Air Force    |Deloitte Consulting LLP      | 2750000000|\n\n\n:::\n:::\n\n\n\nA word of caution: several news reports have called out errors in DOGE's accounting of its government restructuring efforts, so take care when working with this data. Here's some further reading:\n\n* _The New York Times_: [DOGE Makes Its Latest Errors Harder to Find](https://www.nytimes.com/2025/03/13/us/politics/doge-errors-funding-grants-claims.html)\n* _CBS News_: [DOGE continues to publish misleading or inaccurate claims on its \"Wall of Receipts\"](https://www.cbsnews.com/news/doge-wall-of-receipts-misleading-inaccurate-claims/)\n\nFound a bug? Got a comment, criticism or suggestion for improvement? Drop me a note: `adipierro.edsource.org`.",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,18 +1,46 @@
 project:
   type: website
-  output-dir: docs
 
 website:
-  title: "Amy DiPierro | Journalist"
+  title: "Amy DiPierro | Data journalist"
+  site-url: https://dipierro.github.io
+  description: "Amy DiPierro uses data analysis, computer programming and the usual phone-dialing, page-turning and door-knocking to cover higher education."
+  open-graph: true
   navbar:
+    logo: "adp_logo.svg"
+    favicon: "adp_logo.svg"
+    background: primary
+    search: true
     left:
       - href: index.qmd
         text: Home
-      - href: about.qmd
-        text: About
+      - href: work.qmd
+        text: Work
+      - href: updates.qmd
+        text: Updates
+      - icon: rss
+        href: updates.xml
+    right:
+    - icon: github
+      text: GitHub
+      href: https://github.com/dipierro
+    - icon: linkedin
+      href: https://linkedin.com/in/dipierro
+    - icon: envelope
+      text: Email
+      href: mailto:adipierro@edsource.org
+  
+  page-footer:
+    left: "© 2025 Amy DiPierro"
 
 format:
   html:
-    theme: cosmo
+    theme: 
+      - journal
+      - custom.scss
     css: styles.css
-    toc: true
+    page-layout: article
+    title-block-banner: true
+    title-block-banner-color: "#2c5282"
+    code-copy: true
+    code-tools: true

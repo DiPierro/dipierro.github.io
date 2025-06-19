@@ -1,7 +1,31 @@
----
-title: "dipierro.github.io"
----
+# Hello
 
-This is a Quarto website.
+My name is Amy DiPierro. I am a data journalist reporting in the public interest.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+My job is to look at the world and report what I see. In pursuit of that goal, I borrow liberally from fields like statistics and computer programming, and do the usual number-dialing and door-knocking, too.
+
+I work at [EdSource](https://edsource.org/author/adipierro), California's largest education newsroom, where I lead our coverage of California State University. I was previously a data journalist at the Center for Public Integrity, where my [reporting](https://hechingerreport.org/hidden-toll-thousands-of-schools-fail-to-count-homeless-students/) received an honorable mention in the Philip Meyer Journalism Award contest. While in graduate school at Stanford, I played a small role in a very cool Big Local News project called [civic-scraper](https://github.com/biglocalnews/civic-scraper).
+
+You can catch me discussing my work from time to time in places like [KPBS](https://www.kpbs.org/podcasts/kpbs-roundtable/csu-uc-schools-establish-new-encampment-and-protest-rules) and [Capital Public Radio](https://www.capradio.org/news/insight/2025/04/10/student-visa-terminations-sac-state-football-spring-game-sierra-poetry-festival/).
+
+I studied history and economics at Swarthmore College and hold a master's degree in journalism from Stanford University, where I was a [Knight-Hennessy Scholar](https://knight-hennessy.stanford.edu/people/amy-dipierro).
+
+# Kudos
+
+* Special citation, Philip Meyer Journalism Award - Investigative Reporters & Editors (2024)
+* Shortlist - Sigma Awards (2023)
+* Breaking Barriers Award - Institute for Nonprofit News (2023)
+* Dateline Awards - Winner, Online Series - Washington, D.C., Chapter of the Society of Professional Journalists (2023)
+* Stewart B. McKinney Award - Human Right to Housing Awards - National Homelessness Law Center (2023)
+
+# Skills
+
+* Computer programming and web scraping with Python
+* Data analysis with R and SQL
+* Structured data extraction, categorization and more with large language models 
+* Automation with GitHub Actions
+* Data visualization with Datawrapper and Flourish
+* Map making with QGIS and R
+* Static site web development with Quarto
+* Version control with Git and GitHub
+* Public records requests

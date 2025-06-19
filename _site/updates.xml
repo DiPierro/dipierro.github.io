@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Amy DiPierro | Data journalist</title>
+<link>https://dipierro.github.io/updates.html</link>
+<atom:link href="https://dipierro.github.io/updates.xml" rel="self" type="application/rss+xml"/>
+<description>Amy DiPierro uses data analysis, computer programming and the usual phone-dialing, page-turning and door-knocking to cover higher education.</description>
+<generator>quarto-1.5.57</generator>
+<lastBuildDate>Sun, 08 Jun 2025 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>Code: Scraping DOGE</title>
+  <link>https://dipierro.github.io/updates/doge/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>I’ve been experimenting with GitHub Actions to automatically <a href="https://github.com/DiPierro/doge">scrape the DOGE API</a> once a week. This should make it possible to compare snapshots of each endpoint to one another over time.</p>
+<p>You can clone the repository and run the script <code>doge.sh</code> from the command line to download a JSON file of all the contracts, grants, leases or payments displayed on the DOGE website. Or you can grab the link to the most-recent JSON file the scraper has downloaded and analyze from there.</p>
+<p>For example, here’s how you might pull down the latest <code>contracts.json</code> file using R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Libraries</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(jsonlite)</span>
+<span id="cb1-4"></span>
+<span id="cb1-5">url_gist <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://raw.githubusercontent.com/DiPierro/doge/refs/heads/main/contracts.json"</span></span>
+<span id="cb1-6">raw_contracts <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fromJSON</span>(curl<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">curl</span>(url_gist))</span>
+<span id="cb1-7">contracts <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map_dfr</span>(raw_contracts, bind_rows)</span>
+<span id="cb1-8"></span>
+<span id="cb1-9">contracts <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb1-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">head</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb1-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb1-12">  knitr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">kable</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 32%">
+<col style="width: 35%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">piid</th>
+<th style="text-align: left;">agency</th>
+<th style="text-align: left;">vendor</th>
+<th style="text-align: right;">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">140D0424F0005</td>
+<td style="text-align: left;">Department of the Interior</td>
+<td style="text-align: left;">Family Endeavors, Inc</td>
+<td style="text-align: right;">3329900357</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2032H524A00020</td>
+<td style="text-align: left;">Department of Treasury</td>
+<td style="text-align: left;">CENTENNIAL TECHNOLOGIES INC.</td>
+<td style="text-align: right;">1900000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">HT001523D0002</td>
+<td style="text-align: left;">Department of Defense</td>
+<td style="text-align: left;">A1FEDIMPACT</td>
+<td style="text-align: right;">1826530973</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FA872624FB071</td>
+<td style="text-align: left;">Department of Defense</td>
+<td style="text-align: left;">Accenture</td>
+<td style="text-align: right;">1491605888</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FA701420D0007</td>
+<td style="text-align: left;">Department of Air Force</td>
+<td style="text-align: left;">Deloitte Consulting LLP</td>
+<td style="text-align: right;">2750000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>A word of caution: several news reports have called out errors in DOGE’s accounting of its government restructuring efforts, so take care when working with this data. Here’s some further reading:</p>
+<ul>
+<li><em>The New York Times</em>: <a href="https://www.nytimes.com/2025/03/13/us/politics/doge-errors-funding-grants-claims.html">DOGE Makes Its Latest Errors Harder to Find</a></li>
+<li><em>CBS News</em>: <a href="https://www.cbsnews.com/news/doge-wall-of-receipts-misleading-inaccurate-claims/">DOGE continues to publish misleading or inaccurate claims on its “Wall of Receipts”</a></li>
+</ul>
+<p>Found a bug? Got a comment, criticism or suggestion for improvement? Drop me a note: <code>adipierro.edsource.org</code>.</p>
+
+
+<!-- -->
+
+
+ ]]></description>
+  <category>code</category>
+  <guid>https://dipierro.github.io/updates/doge/</guid>
+  <pubDate>Sun, 08 Jun 2025 07:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Listening: Marcia Griffiths, Yukihiro Takahashi, Pete Seeger</title>
+  <link>https://dipierro.github.io/updates/listening-2025-06/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><em>This is the first post in an occasional series sharing songs I heard and liked. Enjoy!</em></p>
+<p><img src="https://img.youtube.com/vi/6cXP-OEixnw/default.jpg" class="img-fluid" alt="Marcia Griffiths"> <a href="https://www.youtube.com/watch?v=6cXP-OEixnw">Marcia Griffiths - “Everywhere”</a></p>
+<p><img src="https://img.youtube.com/vi/F5PbPtZ1p2o/default.jpg" class="img-fluid" alt="Yukihiro Takahashi"> <a href="https://www.youtube.com/watch?v=F5PbPtZ1p2o">Yukihiro Takahashi - “Drip Dry Eyes”</a></p>
+<p><img src="https://img.youtube.com/vi/eS-6iIg1UFQ/default.jpg" class="img-fluid" alt="Pete Seeger"> <a href="https://www.youtube.com/watch?v=eS-6iIg1UFQ">Pete Seeger - “The Dove”</a></p>
+
+
+<!-- -->
+
+
+ ]]></description>
+  <category>listening</category>
+  <guid>https://dipierro.github.io/updates/listening-2025-06/</guid>
+  <pubDate>Thu, 05 Jun 2025 07:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
