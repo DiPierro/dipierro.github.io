@@ -21,20 +21,6 @@
     "text": "No matching items"
   },
   {
-    "objectID": "work.html",
-    "href": "work.html",
-    "title": "Work",
-    "section": "",
-    "text": "Federal grant cuts hit California universities hard, putting research in limbo\n\n\n\n\n\n\nreporting\n\n\ndatawrapper\n\n\n\n\n\n\n\n\n\nMay 28, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nEnrollment climbs at some Cal State campuses, tumbles at others\n\n\n\n\n\n\nreporting\n\n\ndatawrapper\n\n\n\n\n\n\n\n\n\nDec 10, 2024\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "work.html#stories",
-    "href": "work.html#stories",
-    "title": "Work",
-    "section": "Stories",
-    "text": "Stories"
-  },
-  {
     "objectID": "updates/post-with-code/index.html",
     "href": "updates/post-with-code/index.html",
     "title": "Post With Code",
@@ -46,14 +32,14 @@
     "href": "index.html",
     "title": "",
     "section": "",
-    "text": "Code\n\n\n\n\n\nHello\nMy name is Amy DiPierro. I am a data journalist reporting in the public interest.\nMy job is to look at the world and report what I see. In pursuit of that goal, I borrow liberally from fields like statistics and computer programming, and do the usual number-dialing and door-knocking, too.\nI work at EdSource, California’s largest education newsroom, where I lead our coverage of California State University. I was previously a data journalist at the Center for Public Integrity, where my reporting received an honorable mention in the Philip Meyer Journalism Award contest. While in graduate school at Stanford, I played a small role in a very cool Big Local News project called civic-scraper.\nYou can catch me discussing my work from time to time in places like KPBS and Capital Public Radio.\nI studied history and economics at Swarthmore College and hold a master’s degree in journalism from Stanford University, where I was a Knight-Hennessy Scholar.\n\n\nKudos\n\nSpecial citation, Philip Meyer Journalism Award - Investigative Reporters & Editors (2024)\nShortlist - Sigma Awards (2023)\nBreaking Barriers Award - Institute for Nonprofit News (2023)\nDateline Awards - Winner, Online Series - Washington, D.C., Chapter of the Society of Professional Journalists (2023)\nStewart B. McKinney Award - Human Right to Housing Awards - National Homelessness Law Center (2023)\n\n\n\nSkills\n\nComputer programming and web scraping with Python\nData analysis with R and SQL\nStructured data extraction, categorization and more with large language models\nAutomation with GitHub Actions\nData visualization with Datawrapper and Flourish\nMap making with QGIS and R\nStatic site web development with Quarto\nVersion control with Git and GitHub\nPublic records requests"
+    "text": "Code\n\n\n\n\n\nHello\nMy name is Amy DiPierro. I am a data journalist reporting in the public interest.\nMy job is to look at the world and report what I see. In pursuit of that goal, I borrow liberally from fields like statistics and computer programming, and do the usual number-dialing and door-knocking, too.\nI work at EdSource, California’s largest education newsroom, where I lead our coverage of California State University. I was previously a data journalist at the Center for Public Integrity, where my reporting received an honorable mention in the Philip Meyer Journalism Award contest. While in graduate school at Stanford, I played a small role in a very cool Big Local News project called civic-scraper.\nI studied history and economics at Swarthmore College and hold a master’s degree in journalism from Stanford University, where I was a Knight-Hennessy Scholar.\nYou can catch me discussing my work in places like KPBS and Capital Public Radio, as well as journalism conferences like NICAR and IRE.\n\n\nKudos\n\nSpecial citation, Philip Meyer Journalism Award - Investigative Reporters & Editors (2024)\nShortlist - Sigma Awards (2023)\nBreaking Barriers Award - Institute for Nonprofit News (2023)\nDateline Awards - Winner, Online Series - Washington, D.C., Chapter of the Society of Professional Journalists (2023)\nStewart B. McKinney Award - Human Right to Housing Awards - National Homelessness Law Center (2023)\n\n\n\nSkills\n\nComputer programming and web scraping with Python\nData analysis with R and SQL\nStructured data extraction, categorization and more with large language models\nAutomation with GitHub Actions\nData visualization with Datawrapper and Flourish\nMap making with QGIS and R\nStatic site web development with Quarto\nVersion control with Git and GitHub\nPublic records requests"
   },
   {
     "objectID": "updates.html",
     "href": "updates.html",
     "title": "Updates",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\nCategories\n\n\n\n\n\n\nJun 8, 2025\n\n\nCode: Scraping DOGE\n\n\ncode\n\n\n\n\nJun 5, 2025\n\n\nListening: Marcia Griffiths, Yukihiro Takahashi, Pete Seeger\n\n\nlistening\n\n\n\n\n\nNo matching items"
+    "text": "Date\n\n\nTitle\n\n\nCategories\n\n\n\n\n\n\nJun 27, 2025\n\n\nCode: Visualizing New Jersey rest stops\n\n\ncode\n\n\n\n\nJun 8, 2025\n\n\nCode: Scraping DOGE\n\n\ncode\n\n\n\n\nJun 5, 2025\n\n\nListening: Marcia Griffiths, Yukihiro Takahashi, Pete Seeger\n\n\nlistening\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "work/post-with-code/index.html",
@@ -89,5 +75,19 @@
     "title": "Federal grant cuts hit California universities hard, putting research in limbo",
     "section": "",
     "text": "Noé C. Crespo, a professor of Health Promotion & Behavioral Science, poses outside the School of Public Health at San Diego State University.\n\n\n{{&lt; iframe https://datawrapper.dwcdn.net/a6AT9/2/ &gt;}}"
+  },
+  {
+    "objectID": "updates/nj-rest-stops/index.html",
+    "href": "updates/nj-rest-stops/index.html",
+    "title": "Code: Visualizing New Jersey rest stops",
+    "section": "",
+    "text": "While road-tripping in New Jersey this summer, I put together this quick map showing all of the rest stops on the New Jersey Turnpike and Garden State Parkway – from the James Gandolfini Service Area in the northeast corner of the state, all the way down to the John Fenwick Service Plaza near Delaware.\n\n\n\n\n\n\nSources: NJGIN Open Data Portal, New Jersey Turnpike Authority, Wikipedia, Google Maps\nIf you find yourself traveling the same roads, you may also enjoy:\n\nGlenn Jones - “My Garden State”\nFountains of Wayne - “The Valley of Malls”\nBruce Springsteen - “Blue Highway”\n\nFound a bug? Got a comment, criticism or suggestion for improvement? Drop me a note: adipierro.edsource.org."
+  },
+  {
+    "objectID": "work/2024-enrollment/index.html",
+    "href": "work/2024-enrollment/index.html",
+    "title": "Enrollment climbs at some Cal State campuses, tumbles at others",
+    "section": "",
+    "text": "I recently wrote about"
   }
 ]

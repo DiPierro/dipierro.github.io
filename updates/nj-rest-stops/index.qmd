@@ -1,0 +1,234 @@
+---
+title: "Code: Visualizing New Jersey rest stops"
+date: "2025-06-27"
+categories: [code]
+---
+
+While road-tripping in New Jersey this summer, I put together this quick map showing all of the rest stops on the New Jersey Turnpike and Garden State Parkway -- from the James Gandolfini Service Area in the northeast corner of the state, all the way down to the John Fenwick Service Plaza near Delaware.
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+
+# Libraries
+library(tidyverse)
+library(here)
+library(sf)
+library(rvest)
+library(mapview)
+
+# Parameters
+url_root <- "https://en.wikipedia.org"
+url_tp <- "https://en.wikipedia.org/wiki/New_Jersey_Turnpike"
+url_gsp <- "https://en.wikipedia.org/wiki/Garden_State_Parkway"
+
+## Source: Handmade map of service areas on 
+##         Garden State Parkway and New Jersey Turnpike
+file_sa_map <- here("updates/nj-rest-stops/data-raw/Service areas.kml")
+
+## Source: NJGIN Open Data Portal, NJDOT Roadway Network - Major Routes
+## Link: https://njogis-newjersey.opendata.arcgis.com/maps/d6c8dc3fd4ee44bb9908b72cf952566f/about
+## Filtered to GARDEN STATE PARKWAY; NEW JERSEY TURNPIKE; I-95, N.J. TURNPIKE
+file_major_routes <- here("updates/nj-rest-stops/data-raw/Major_Routes.kml")
+
+# Code
+
+## Functions
+
+get_table <- function(url, index, type) {
+  read_html(url) %>% 
+    html_table() %>% 
+    pluck(index) %>% 
+    mutate(type = type)
+}
+
+get_related_links <- function(url, index) {
+  read_html(url) %>% 
+    html_elements("table") %>% 
+    pluck(index) %>% 
+    html_element("tbody") %>% 
+    html_elements("th") %>% 
+    html_element("a") %>% 
+    html_attr("href") %>% 
+    enframe() %>% 
+    mutate(value = str_c(url_root, value))
+}
+
+get_wikipedia_image <- function(url) {
+  
+  default_thumbnail <- 
+          "https://upload.wikimedia.org/wikipedia/commons/9/95/Flag-map_of_New_Jersey.svg"
+  page_title <- str_remove(url, ".*wiki/")
+  page_title <- URLdecode(page_title)
+  
+  api_url <- str_c(
+    "https://en.wikipedia.org/api/rest_v1/page/summary/",
+    URLencode(page_title, reserved = TRUE)
+  )
+  
+  tryCatch({
+    response <- httr::GET(api_url)
+    if (response$status_code == 200) {
+      content <- jsonlite::fromJSON(api_url)
+      # Case for Wikipedia pages with thumbnail images
+      if (!is.null(content$thumbnail$source)) {
+        extract_html <- content$extract_html
+        thumbnail <- content$thumbnail$source
+        return(
+          tibble("extract_html" = extract_html, "thumbnail" = thumbnail)
+        )
+      # Case for Wikipedia pages without thumbnail images
+      } else {
+        extract_html <- content$extract_html
+        return(
+          tibble("extract_html" = extract_html, "thumbnail" = default_thumbnail)
+        )
+      } 
+    # Case for Colonia North and Colonia South, which have no Wikipedia pages
+    } else {
+      extract_html <- "<p><b>Colonia North</b> and <b>Colonia South</b> are privately owned and operated facilities. (Source: New Jersey Turnpike Authority)</p>"
+      return(
+        tibble("extract_html" = extract_html, "thumbnail" = default_thumbnail)
+      )
+    }
+  }, error = function(e) NA)
+}
+
+## Extract and standardize text of tables with service areas
+tp <- 
+  get_table(url_tp, 4, "New Jersey Turnpike") %>% 
+  select(-`Nearest exits`)
+
+gsp <- 
+  get_table(url_gsp, 3, "Garden State Parkway") %>% 
+  rename("Service area" = Name, "mi" = `mi[1]`) %>% 
+  select(-Facilities)
+
+## Extract related links
+tp_related <-
+  get_related_links(url_tp, 4) %>% 
+  filter(!is.na(value)) %>% 
+  select(-name)
+
+gsp_related <-
+  get_related_links(url_gsp, 3) %>% 
+  filter(name >= 8) %>% 
+  select(-name)
+
+## Fetch New Jersey map
+nj <- 
+  tidycensus::state_laea %>% 
+  filter(GEOID == 34) %>% 
+  # Source: https://epsg.io/103484
+  st_transform("ESRI:103484")
+
+## Read and clean New Jersey service area data
+sa_map <- 
+  st_read(file_sa_map, quiet = TRUE) %>% 
+  mutate(name = str_trim(str_remove(Name, " Service Area| Service Plaza| Travel Plaza"))) %>% 
+  select(-Name)
+
+## Read and clean New Jersey major routes data
+major_routes <- 
+  st_read(file_major_routes, quiet = TRUE) %>% 
+  mutate(
+    Name = c("New Jersey Turnpike", "New Jersey Turnpike", "Garden State Parkway")
+  )
+
+## Merge all data
+service_areas <-
+  bind_rows(
+    tp %>% 
+      add_column(tp_related),
+    gsp %>% 
+      add_column(gsp_related)
+  ) %>% 
+  mutate(
+    name = if_else(
+      str_detect(`Service area`, "\\("),
+      str_trim(str_extract(`Service area`, ".*(?=\\s\\()")),
+      str_trim(`Service area`)
+    ),
+    # Set default value for Colonia service areas
+    value = if_else(is.na(value), "https://www.njta.com/travel-resources/service-areas-commuter-lots", value)
+  ) %>% 
+  select(-`Service area`) %>% 
+  # Manually exclude Eatontown and New Gretna, which are closed
+  filter(str_detect(name, "Eatontown|New Gretna", negate = TRUE))
+
+# Get images for all locations
+service_areas_image <- 
+  map_dfr(service_areas$value, get_wikipedia_image) %>% 
+  # Manually exclude Eatontown and, which are closed
+  filter(str_detect(extract_html, "Eatontown|New Gretna", negate = TRUE))
+
+## Add spatial data
+nj_crs = st_crs(st_crs(nj))
+service_area_map <-
+  sa_map %>% 
+  left_join(
+    service_areas %>% 
+      bind_cols(service_areas_image), 
+  by = "name") %>%
+  ## Transform projection
+  st_transform(nj_crs) %>% 
+  st_zm()
+
+## Create popups
+service_area_map$popup_html <- str_c(
+  "<div style='text-align: center; width: 500px;'>",
+  "<h3>", service_area_map$name, "</h3>",
+  "<h6>", service_area_map$type, "</h6>",
+  "<a href='", service_area_map$value, "' target='_blank'>",
+  "<img src='", service_area_map$thumbnail, "' style='width: 100px; height: auto; border: 2px solid #ccc;'>",
+  "</a>",
+  "<br><small>Click to open link</small>",
+  "<br><small>", service_area_map$extract_html, "</small>",
+  "</div>"
+)
+
+## Render map
+mapviewOptions(
+  ## Select colors from New Jersey flag: https://usflags.design/new-jersey/
+  vector.palette = c("#e1b584", "#2484c6")
+)
+
+# Layer shading the state of New Jersey
+mapview(
+    nj %>% mutate(GEOID = "NJ"), 
+    color = "#98a4ae", 
+    col.regions = "#98a4ae", 
+    legend = FALSE, 
+    alpha = 0.1,
+    popup = NULL,
+    layer.name = "New Jersey"
+  ) +
+  # Layer showing the Turnpike and the GSP
+  mapview(
+    major_routes, 
+    zcol = "Name", 
+    legend = FALSE, 
+    popup = NULL,
+    layer.name = "Major routes"
+  ) +
+  # Layer showing the point locations service areas
+  mapview(
+    color = "#98a4ae",
+    service_area_map, 
+    zcol = "type",
+    label = "name",
+    popup = service_area_map$popup_html,
+    layer.name = "New Jersey rest stops"
+  )
+```
+
+**Sources:** NJGIN Open Data Portal, New Jersey Turnpike Authority, Wikipedia, Google Maps
+
+If you find yourself traveling the same roads, you may also enjoy:
+
+-   [Glenn Jones - "My Garden State"](https://www.youtube.com/watch?v=9TJ1mzHWt7Y)
+-   [Fountains of Wayne - "The Valley of Malls"](https://www.youtube.com/watch?v=JI4ji2ncgIU)
+-   [Bruce Springsteen - "Blue Highway"](https://www.youtube.com/watch?v=9cCQ1Cs1R2g)
+
+Found a bug? Got a comment, criticism or suggestion for improvement? Drop me a note: `adipierro.edsource.org`.

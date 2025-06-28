@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Service areas</name>
+    <Style id="icon-1899-0288D1-nodesc-normal">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1899-0288D1-nodesc-highlight">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1899-0288D1-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-0288D1-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-0288D1-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>Molly Pitcher Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.488197,40.3211935,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Clara Barton Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -75.396682,39.6979163,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Thomas Edison Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.2645505,40.559985,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Woodrow Wilson Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.6286569,40.1762666,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Vince Lombardi Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.0297222,40.8227778,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>John Fenwick Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -75.3964436,39.6956787,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>James Fenimore Cooper Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.888623,39.9807625,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Richard Stockton Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.6310747,40.1778481,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>James Gandolfini Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.066528,41.0480095,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Judy Blume Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.0991279,40.1983467,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Woodrow Wilson Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.6286569,40.1762666,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Frank Sinatra Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.5289363,39.4706489,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Jon Bon Jovi Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.289289,40.466341,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Whitney Houston Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.2519075,40.6987184,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Walt Whitman Travel Plaza</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -75.0028207,39.8859621,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Joyce Kilmer Travel Plaza</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.4438495,40.4166917,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Grover Cleveland Travel Plaza</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.2630881,40.5570401,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Celia Cruz Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.2145316,39.8741341,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Connie Chung Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.1809919,40.8364795,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Larry Doby Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.1789066,40.8393754,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Colonia North Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.3231429,40.5913814,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Colonia South Service Area</name>
+      <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+      <Point>
+        <coordinates>
+          -74.3317367,40.581374,0
+        </coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>

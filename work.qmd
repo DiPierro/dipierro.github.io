@@ -1,13 +1,19 @@
 ---
+pagetitle: "Work"
 title: "Work"
 subtitle: Selected stories & projects
+format:
+  html:
+    toc: false
+search: false
+execute:
+  echo: false
 listing:
-  contents: work
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
+  - id: work
+    template: work/gallery.ejs
+    contents: work/gallery.yml
+contents: work
+sort: "date desc"
 page-layout: full
 title-block-banner: true
 ---

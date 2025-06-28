@@ -105,20 +105,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    const listingTargetEl = window.document.querySelector('#listing-work .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-category','listing-tiles',{ data: ['index'] },{ data: ['categories'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-category","listing-tiles"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+    window['quarto-listings']['listing-work'] = new List('listing-work', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -179,7 +179,7 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Work – Amy DiPierro | Data journalist">
+<meta property="og:title" content="Work">
 <meta property="og:description" content="Selected stories &amp; projects">
 <meta property="og:site_name" content="Amy DiPierro | Data journalist">
 </head>
@@ -248,14 +248,14 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
+    <div class="quarto-title column-page">
       <div class="quarto-title-block"><div><h1 class="title">Work</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
             <p class="subtitle lead">Selected stories &amp; projects</p>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta column-page">
 
       
     
@@ -266,11 +266,9 @@ window.Quarto = {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="datawrapper">datawrapper <span class="quarto-category-count">(2)</span></div><div class="category" data-category="reporting">reporting <span class="quarto-category-count">(2)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
 
 
 
@@ -282,80 +280,224 @@ window.Quarto = {
 <!-- -->
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="reporting,datawrapper" data-listing-date-sort="1748415600000" data-listing-file-modified-sort="1749696871032" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="26">
-<div class="thumbnail">
-<p><a href="./work/2025-federal-research/index.html" class="no-external"></a></p><a href="./work/2025-federal-research/index.html" class="no-external">
-<p><img loading="lazy" src="https://edsource.org/wp-content/uploads/2025/05/IMG_5961-2048x1536.jpg" class="thumbnail-image"></p>
-</a><p><a href="./work/2025-federal-research/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./work/2025-federal-research/index.html" class="no-external">Federal grant cuts hit California universities hard, putting research in limbo</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./work/2025-federal-research/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('reporting'); return false;">
-reporting
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('datawrapper'); return false;">
-datawrapper
-</div>
-</div>
-<div class="listing-description">
-<a href="./work/2025-federal-research/index.html" class="no-external">
-<figure class="figure">
+<div class="quarto-listing quarto-listing-container-custom" id="listing-work">
+
+<h2 class="anchored">EdSource</h2>
+
 <p></p>
-<figcaption>Noé C. Crespo, a professor of Health Promotion &amp; Behavioral Science, poses outside the School of Public Health at San Diego State University.</figcaption>
-</figure>
-</a>
+
+<div class="list grid" style="column-gap: 10px;">
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="0">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <small class="card-text inline-block">
+        <a href="https://edsource.org/2025/us-china-student-visa-policy-changes/734859" class="listing-title">Chinese students at the University of California</a>
+        
+        <span class="text-muted listing-subtitle"></span>
+      </small>
+    </div>
+    <a href="https://edsource.org/2025/us-china-student-visa-policy-changes/734859">
+      <img src="work/2025/chinese-students-dw.png" alt="" class="card-img">
+    </a>
+    
+    
+    
+  </div>
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="1">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <small class="card-text inline-block">
+        <a href="https://edsource.org/2025/us-china-student-visa-policy-changes/734859" class="listing-title">A dip in Chinese students at U.S. colleges</a>
+        
+        <span class="text-muted listing-subtitle"></span>
+      </small>
+    </div>
+    <a href="https://edsource.org/2025/us-china-student-visa-policy-changes/734859">
+      <img src="work/2025/chinese-students-dw2.png" alt="" class="card-img">
+    </a>
+    
+    
+    
+  </div>
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="2">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <small class="card-text inline-block">
+        <a href="https://edsource.org/2025/california-research-grants-federal-funding-trump-administration/733468" class="listing-title">Federal grant cuts hit California universities hard, putting research in limbo</a>
+        
+        <span class="text-muted listing-subtitle"></span>
+      </small>
+    </div>
+    <a href="https://edsource.org/2025/california-research-grants-federal-funding-trump-administration/733468">
+      <img src="work/2025/federal-research-dw.png" alt="" class="card-img">
+    </a>
+    
+    
+    
+  </div>
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="3">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <small class="card-text inline-block">
+        <a href="https://edsource.org/2025/visa-uncertainty-hits-california-community-college-international-students/731397" class="listing-title">Visa uncertainty hits California community colleges’ international students</a>
+        
+        <span class="text-muted listing-subtitle"></span>
+      </small>
+    </div>
+    <a href="https://edsource.org/2025/visa-uncertainty-hits-california-community-college-international-students/731397">
+      <img src="work/2025/ccc-international-dw.png" alt="" class="card-img">
+    </a>
+    
+    
+    
+  </div>
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="4">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <small class="card-text inline-block">
+        <a href="https://edsource.org/2024/enrollment-rises-at-some-cal-state-campuses-falls-at-others/723526" class="listing-title">Enrollment climbs at some Cal State campuses, tumbles at others</a>
+        
+        <span class="text-muted listing-subtitle"></span>
+      </small>
+    </div>
+    <a href="https://edsource.org/2024/enrollment-rises-at-some-cal-state-campuses-falls-at-others/723526">
+      <img src="work/2024/enrollment-dw.png" alt="" class="card-img">
+    </a>
+    
+    
+    
+  </div>
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="5">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <small class="card-text inline-block">
+        <a href="https://edsource.org/2024/graduation-rates-up-at-most-cal-state-campuses-but-some-worsen/722802" class="listing-title">Graduation rates up at most Cal State campuses, but some worsen</a>
+        
+        <span class="text-muted listing-subtitle"></span>
+      </small>
+    </div>
+    <a href="https://edsource.org/2024/graduation-rates-up-at-most-cal-state-campuses-but-some-worsen/722802">
+      <img src="work/2024/graduation-dw.png" alt="" class="card-img">
+    </a>
+    
+    
+    
+  </div>
+
 </div>
+
+<h2 class="anchored">Center for Public Integrity</h2>
+
+<p></p>
+
+<div class="list grid" style="column-gap: 10px;">
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="6">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <small class="card-text inline-block">
+        <a href="https://publicintegrity.org/education/unhoused-and-undercounted/schools-fail-to-count-homeless-students/" class="listing-title">Hidden toll: Thousands of schools fail to count homeless students</a>
+        
+        <span class="text-muted listing-subtitle"></span>
+      </small>
+    </div>
+    <a href="https://publicintegrity.org/education/unhoused-and-undercounted/schools-fail-to-count-homeless-students/">
+      <img src="https://i0.wp.com/publicintegrity.org/wp-content/uploads/2022/10/Final-student-homelessness.jpeg" alt="" class="card-img">
+    </a>
+    
+    
+    
+  </div>
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="7">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <small class="card-text inline-block">
+        <a href="https://publicintegrity.org/education/unhoused-and-undercounted/pennsylvania-homeless-students-schools-disenroll/" class="listing-title">Homeless students needed help. Schools showed them the door.</a>
+        
+        <span class="text-muted listing-subtitle"></span>
+      </small>
+    </div>
+    <a href="https://publicintegrity.org/education/unhoused-and-undercounted/pennsylvania-homeless-students-schools-disenroll/">
+      <img src="work/2023/homeless.png" alt="" class="card-img">
+    </a>
+    
+    
+    
+  </div>
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="8">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <small class="card-text inline-block">
+        <a href="https://publicintegrity.org/education/unhoused-and-undercounted/homeless-and-suspended-in-california/" class="listing-title">Homeless and suspended in California</a>
+        
+        <span class="text-muted listing-subtitle"></span>
+      </small>
+    </div>
+    <a href="https://publicintegrity.org/education/unhoused-and-undercounted/homeless-and-suspended-in-california/">
+      <img src="work/2023/suspensions.png" alt="" class="card-img">
+    </a>
+    
+    
+    
+  </div>
+
 </div>
-<div class="metadata">
-<a href="./work/2025-federal-research/index.html" class="no-external">
-<div class="listing-date">
-May 28, 2025
+
+<h2 class="anchored">Freelance</h2>
+
+<p></p>
+
+<div class="list grid" style="column-gap: 10px;">
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="9">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <small class="card-text inline-block">
+        <a href="https://voiceofsandiego.org/2024/12/13/san-diegans-can-drink-their-tap-water-many-pay-more-at-the-vending-machine-anyway/" class="listing-title">San Diegans can drink their tap water. Many pay more at the vending machine anyway.</a>
+        
+        <span class="text-muted listing-subtitle"></span>
+      </small>
+    </div>
+    <a href="https://voiceofsandiego.org/2024/12/13/san-diegans-can-drink-their-tap-water-many-pay-more-at-the-vending-machine-anyway/">
+      <img src="work/2024/water1.png" alt="" class="card-img">
+    </a>
+    
+    
+    
+  </div>
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="10">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <small class="card-text inline-block">
+        <a href="https://voiceofsandiego.org/2024/12/13/san-diegans-can-drink-their-tap-water-many-pay-more-at-the-vending-machine-anyway/" class="listing-title">Water vending machines and Latino population</a>
+        
+        <span class="text-muted listing-subtitle"></span>
+      </small>
+    </div>
+    <a href="https://voiceofsandiego.org/2024/12/13/san-diegans-can-drink-their-tap-water-many-pay-more-at-the-vending-machine-anyway/">
+      <img src="work/2024/water2.png" alt="" class="card-img">
+    </a>
+    
+    
+    
+  </div>
+
+  <div class="card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" data-index="11">
+    <div class="card-header py-1 px-2 border-bottom border-1 bg-light">
+      <small class="card-text inline-block">
+        <a href="https://localnewsmatters.org/2021/08/20/debt-collection-lawsuits-compound-covid-woes-for-some-bay-area-residents/" class="listing-title">Debt collection lawsuits compound COVID woes for some Bay Area residents</a>
+        
+        <span class="text-muted listing-subtitle"></span>
+      </small>
+    </div>
+    <a href="https://localnewsmatters.org/2021/08/20/debt-collection-lawsuits-compound-covid-woes-for-some-bay-area-residents/">
+      <img src="https://i0.wp.com/localnewsmatters.org/wp-content/uploads/2021/08/BCN-20210818-DEBTCOLLECTION_02.png" alt="" class="card-img">
+    </a>
+    
+    
+    
+  </div>
+
 </div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="reporting,datawrapper" data-listing-date-sort="1733817600000" data-listing-file-modified-sort="1749696390546" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail">
-<p><a href="./work/2024-enrollment/index.html" class="no-external"></a></p><a href="./work/2024-enrollment/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./work/2024-enrollment/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./work/2024-enrollment/index.html" class="no-external">Enrollment climbs at some Cal State campuses, tumbles at others</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./work/2024-enrollment/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('reporting'); return false;">
-reporting
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('datawrapper'); return false;">
-datawrapper
-</div>
-</div>
-<div class="listing-description">
-<a href="./work/2024-enrollment/index.html" class="no-external"></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./work/2024-enrollment/index.html" class="no-external">
-<div class="listing-date">
-Dec 10, 2024
-</div>
-</a>
-</div>
-</div>
-</div>
+
 <div class="listing-no-matching d-none">
 No matching items
 </div>
@@ -832,18 +974,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Work"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> Selected stories &amp; projects</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">listing:</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  contents: work</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  sort: "date desc"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">  type: default</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">  categories: true</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">  sort-ui: false</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">  filter-ui: false</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="an">page-layout:</span><span class="co"> full</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">pagetitle:</span><span class="co"> "Work"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Work"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> Selected stories &amp; projects</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: false</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="an">search:</span><span class="co"> false</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: false</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="an">listing:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">  - id: work</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    template: work/gallery.ejs</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    contents: work/gallery.yml</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="an">contents:</span><span class="co"> work</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="an">sort:</span><span class="co"> "date desc"</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="an">page-layout:</span><span class="co"> full</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

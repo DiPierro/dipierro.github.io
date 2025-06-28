@@ -4,11 +4,11 @@ My name is Amy DiPierro. I am a data journalist reporting in the public interest
 
 My job is to look at the world and report what I see. In pursuit of that goal, I borrow liberally from fields like statistics and computer programming, and do the usual number-dialing and door-knocking, too.
 
-I work at [EdSource](https://edsource.org/author/adipierro), California's largest education newsroom, where I lead our coverage of California State University. I was previously a data journalist at the Center for Public Integrity, where my [reporting](https://hechingerreport.org/hidden-toll-thousands-of-schools-fail-to-count-homeless-students/) received an honorable mention in the Philip Meyer Journalism Award contest. While in graduate school at Stanford, I played a small role in a very cool Big Local News project called [civic-scraper](https://github.com/biglocalnews/civic-scraper).
-
-You can catch me discussing my work from time to time in places like [KPBS](https://www.kpbs.org/podcasts/kpbs-roundtable/csu-uc-schools-establish-new-encampment-and-protest-rules) and [Capital Public Radio](https://www.capradio.org/news/insight/2025/04/10/student-visa-terminations-sac-state-football-spring-game-sierra-poetry-festival/).
+I work at [EdSource](https://edsource.org/author/adipierro), California's largest education newsroom, where I lead our coverage of California State University. I was previously a data journalist at the Center for Public Integrity, where my [reporting](https://hechingerreport.org/hidden-toll-thousands-of-schools-fail-to-count-homeless-students/) received an honorable mention in the Philip Meyer Journalism Award contest. I also played a small role in a very cool [Big Local News](https://biglocalnews.org/#/login) project called [civic-scraper](https://github.com/biglocalnews/civic-scraper).
 
 I studied history and economics at Swarthmore College and hold a master's degree in journalism from Stanford University, where I was a [Knight-Hennessy Scholar](https://knight-hennessy.stanford.edu/people/amy-dipierro).
+
+You can catch me discussing my work in places like [KPBS](https://www.kpbs.org/podcasts/kpbs-roundtable/csu-uc-schools-establish-new-encampment-and-protest-rules) and [Capital Public Radio](https://www.capradio.org/news/insight/2025/04/10/student-visa-terminations-sac-state-football-spring-game-sierra-poetry-festival/), as well as journalism conferences like [NICAR](https://www.ire.org/training/conferences/nicar-2025/) and [IRE](https://www.ire.org/training/conferences/ire-2024/).
 
 # Kudos
 

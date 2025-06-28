@@ -1,0 +1,43 @@
+- category: EdSource
+  tiles:
+    - title: "Chinese students at the University of California"
+      href: https://edsource.org/2025/us-china-student-visa-policy-changes/734859
+      thumbnail: work/2025/chinese-students-dw.png
+    - title: "A dip in Chinese students at U.S. colleges"
+      href: https://edsource.org/2025/us-china-student-visa-policy-changes/734859
+      thumbnail: work/2025/chinese-students-dw2.png
+    - title: "Federal grant cuts hit California universities hard, putting research in limbo"
+      href: https://edsource.org/2025/california-research-grants-federal-funding-trump-administration/733468
+      thumbnail: work/2025/federal-research-dw.png
+    - title: "Visa uncertainty hits California community colleges’ international students"
+      href: https://edsource.org/2025/visa-uncertainty-hits-california-community-college-international-students/731397
+      thumbnail: work/2025/ccc-international-dw.png
+    - title: "Enrollment climbs at some Cal State campuses, tumbles at others"
+      href: https://edsource.org/2024/enrollment-rises-at-some-cal-state-campuses-falls-at-others/723526
+      thumbnail: work/2024/enrollment-dw.png
+    - title: "Graduation rates up at most Cal State campuses, but some worsen"
+      href: https://edsource.org/2024/graduation-rates-up-at-most-cal-state-campuses-but-some-worsen/722802
+      thumbnail: work/2024/graduation-dw.png
+- category: Center for Public Integrity
+  tiles:
+    - title: "Hidden toll: Thousands of schools fail to count homeless students"
+      href: https://publicintegrity.org/education/unhoused-and-undercounted/schools-fail-to-count-homeless-students/
+      thumbnail: https://i0.wp.com/publicintegrity.org/wp-content/uploads/2022/10/Final-student-homelessness.jpeg
+    - title: "Homeless students needed help. Schools showed them the door."
+      href: https://publicintegrity.org/education/unhoused-and-undercounted/pennsylvania-homeless-students-schools-disenroll/
+      thumbnail: work/2023/homeless.png
+    - title: "Homeless and suspended in California" 
+      href: https://publicintegrity.org/education/unhoused-and-undercounted/homeless-and-suspended-in-california/
+      thumbnail: work/2023/suspensions.png
+- category: Freelance
+  tiles:
+    - title: "San Diegans can drink their tap water. Many pay more at the vending machine anyway."
+      href: https://voiceofsandiego.org/2024/12/13/san-diegans-can-drink-their-tap-water-many-pay-more-at-the-vending-machine-anyway/
+      thumbnail: work/2024/water1.png
+    - title: "Water vending machines and Latino population"
+      href: https://voiceofsandiego.org/2024/12/13/san-diegans-can-drink-their-tap-water-many-pay-more-at-the-vending-machine-anyway/
+      thumbnail: work/2024/water2.png
+    - title: "Debt collection lawsuits compound COVID woes for some Bay Area residents"
+      href: https://localnewsmatters.org/2021/08/20/debt-collection-lawsuits-compound-covid-woes-for-some-bay-area-residents/
+      thumbnail: https://i0.wp.com/localnewsmatters.org/wp-content/uploads/2021/08/BCN-20210818-DEBTCOLLECTION_02.png
+    
