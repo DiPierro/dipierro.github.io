@@ -1,0 +1,17 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#67a9cf;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ef8a62;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle with gradient -->
+  <circle cx="32" cy="32" r="30" fill="url(#backgroundGradient)" stroke="url(#backgroundGradient)" stroke-width="1"/>
+  
+  <!-- Letter A (higher position) -->
+  <text x="16" y="38" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="700" fill="white">A</text>
+  
+  <!-- Letter D (lower position, overlapping A) -->
+  <text x="28" y="50" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="700" fill="white">D</text>
+</svg>
