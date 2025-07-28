@@ -46,6 +46,242 @@
   <pubDate>Fri, 27 Jun 2025 07:00:00 GMT</pubDate>
 </item>
 <item>
+  <title>Code: A neat mail merge trick in R</title>
+  <link>https://dipierro.github.io/updates/mail-merge/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>While reporting a recent story, I wanted to send customized versions of the same email to dozens of potential sources. It was a classic use case for <a href="https://support.google.com/mail/answer/12921167?hl=en">mail merge</a> and, since I was already working with a spreadsheet that included prospective sources’ names and emails in R, I wondered: Could I run a mail merge without ever leaving RStudio?</p>
+<p>It turns out the answer to this question is a resounding “yes” – and here’s how I did it.</p>
+<section id="configure-gmail." class="level1">
+<h1>1: Configure Gmail.</h1>
+<p>This was the trickiest part. I started by setting up <a href="https://support.google.com/accounts/answer/185839?hl=en&amp;co=GENIE.Platform%3DDesktop">two-factor authentication</a> and then <a href="https://support.google.com/mail/answer/185833?hl=en">created an app password</a>. I’ll use the password in the final step to send emails from R.</p>
+<p>Next, to avoid including my app password in published scripts, I stashed it in my .Renviron file, saving it as the environmental variable <code>GMAIL_APP_PW</code>. If you get tripped up looking for your .Renviron, you can always pull it with <code>usethis::edit_r_environ()</code>.</p>
+</section>
+<section id="format-emails." class="level1">
+<h1>2: Format emails.</h1>
+<p>From there, all I had to do was read in a csv file with names and emails, create an email template and use string substitution to customize each message.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Libraries</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(curl)</span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(here)</span>
+<span id="cb1-5"></span>
+<span id="cb1-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Parameters</span></span>
+<span id="cb1-7">file_in <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">here</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"updates/mail-merge/example.csv"</span>)</span>
+<span id="cb1-8">pw <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Sys.getenv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"GMAIL_APP_PW"</span>) </span>
+<span id="cb1-9">sender <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"adipierro@edsource.org"</span></span>
+<span id="cb1-10"></span>
+<span id="cb1-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Code</span></span>
+<span id="cb1-12"></span>
+<span id="cb1-13"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">## Read in file of recipients</span></span>
+<span id="cb1-14">recipients <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(file_in)</span>
+<span id="cb1-15"></span>
+<span id="cb1-16"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">## Write an email template</span></span>
+<span id="cb1-17">template <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb1-18"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">From: 'Amy DiPierro' &lt;adipierro@edsource.org&gt;</span></span>
+<span id="cb1-19"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">To: '{first_name} {last_name}' &lt;{email}&gt;</span></span>
+<span id="cb1-20"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Subject: Hello, {first_name}!</span></span>
+<span id="cb1-21"></span>
+<span id="cb1-22"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Dear {first_name},</span></span>
+<span id="cb1-23"></span>
+<span id="cb1-24"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">How's it going at {employer}?</span></span>
+<span id="cb1-25"></span>
+<span id="cb1-26"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Cheers,</span></span>
+<span id="cb1-27"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Amy</span></span>
+<span id="cb1-28"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb1-29"></span>
+<span id="cb1-30"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Use string formatting to customize each email.</span></span>
+<span id="cb1-31">message <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> recipients <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_glue_data</span>(template)</span>
+<span id="cb1-32"></span>
+<span id="cb1-33"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Extract list of recipients' emails</span></span>
+<span id="cb1-34">emails <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> recipients <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pull</span>(email)</span></code></pre></div>
+</div>
+<p>Here’s the original data I used to send test emails to myself:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">first_name</th>
+<th style="text-align: left;">last_name</th>
+<th style="text-align: left;">email</th>
+<th style="text-align: left;">employer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Amy</td>
+<td style="text-align: left;">DiPierro</td>
+<td style="text-align: left;">adipierro@edsource.org</td>
+<td style="text-align: left;">EdSource</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mya</td>
+<td style="text-align: left;">DePriori</td>
+<td style="text-align: left;">adipierro@edsource.org</td>
+<td style="text-align: left;">CodeUser</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>And here’s an example of how the email template looks after string formatting:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>From: 'Amy DiPierro' &lt;adipierro@edsource.org&gt;
+To: 'Mya DePriori' &lt;adipierro@edsource.org&gt;
+Subject: Hello, Mya!
+
+Dear Mya,
+
+How's it going at CodeUser?
+
+Cheers,
+Amy</code></pre>
+</div>
+</div>
+</section>
+<section id="send-emails" class="level1">
+<h1>3: Send emails!</h1>
+<p>Finally, I used the <code>send_mail</code> function from R’s <code>curl</code> library to email each customized message to the right recipient. In the code below, I wrap <code>send_mail</code> in the <code>purrr</code> function <code>map2</code>, which loops through the list of customized messages and emails simultaneously.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Send all emails</span></span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map2</span>(</span>
+<span id="cb3-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">.x =</span> message,</span>
+<span id="cb3-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">.y =</span> emails,</span>
+<span id="cb3-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">.f =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">send_mail</span>(</span>
+<span id="cb3-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mail_from =</span> sender,</span>
+<span id="cb3-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mail_rcpt =</span> .y,</span>
+<span id="cb3-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">message =</span> .x,</span>
+<span id="cb3-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">smtp_server =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"smtps://smtp.gmail.com"</span>,</span>
+<span id="cb3-10">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">username =</span> sender,</span>
+<span id="cb3-11">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">password  =</span> pw,</span>
+<span id="cb3-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">verbose =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span></span>
+<span id="cb3-13">  )</span>
+<span id="cb3-14">)</span></code></pre></div>
+</div>
+<p>And that’s it. Within a few moments, my test emails hit my inbox.</p>
+<p>Found a bug? Got a comment, criticism or suggestion for improvement? Drop me a note: <code>adipierro.edsource.org</code>.</p>
+
+
+<!-- -->
+
+</section>
+
+ ]]></description>
+  <category>code</category>
+  <guid>https://dipierro.github.io/updates/mail-merge/</guid>
+  <pubDate>Fri, 27 Jun 2025 07:00:00 GMT</pubDate>
+</item>
+<item>
   <title>Code: Scraping DOGE</title>
   <link>https://dipierro.github.io/updates/doge/</link>
   <description><![CDATA[ 

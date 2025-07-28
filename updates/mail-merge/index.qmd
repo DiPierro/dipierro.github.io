@@ -1,0 +1,103 @@
+---
+title: "Code: A neat mail merge trick in R"
+date: "2025-06-27"
+categories: [code]
+---
+
+While reporting a recent story, I wanted to send customized versions of the same email to dozens of potential sources. It was a classic use case for [mail merge](https://support.google.com/mail/answer/12921167?hl=en) and, since I was already working with a spreadsheet that included prospective sources' names and emails in R, I wondered: Could I run a mail merge without ever leaving RStudio?
+
+It turns out the answer to this question is a resounding "yes" -- and here's how I did it. 
+
+# 1: Configure Gmail.
+
+This was the trickiest part. I started by setting up [two-factor authentication](https://support.google.com/accounts/answer/185839?hl=en&co=GENIE.Platform%3DDesktop) and then [created an app password](https://support.google.com/mail/answer/185833?hl=en). I'll use the password in the final step to send emails from R.
+
+Next, to avoid including my app password in published scripts, I stashed it in my .Renviron file, saving it as the environmental variable `GMAIL_APP_PW`. If you get tripped up looking for your .Renviron, you can always pull it with `usethis::edit_r_environ()`.
+
+# 2: Format emails.
+
+From there, all I had to do was read in a csv file with names and emails, create an email template and use string substitution to customize each message.
+
+```{r}
+#| message: false
+#| warning: false
+# Libraries
+library(tidyverse)
+library(curl)
+library(here)
+
+# Parameters
+file_in <- here("updates/mail-merge/example.csv")
+pw <- Sys.getenv("GMAIL_APP_PW") 
+sender <- "adipierro@edsource.org"
+
+# Code
+
+## Read in file of recipients
+recipients <- read_csv(file_in)
+
+## Write an email template
+template <- "
+From: 'Amy DiPierro' <adipierro@edsource.org>
+To: '{first_name} {last_name}' <{email}>
+Subject: Hello, {first_name}!
+
+Dear {first_name},
+
+How's it going at {employer}?
+
+Cheers,
+Amy
+"
+
+# Use string formatting to customize each email.
+message <- recipients %>% str_glue_data(template)
+
+# Extract list of recipients' emails
+emails <- recipients %>% pull(email)
+```
+Here's the original data I used to send test emails to myself:
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+recipients %>% knitr::kable()
+```
+
+And here's an example of how the email template looks after string formatting:
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+message[2]
+```
+
+# 3: Send emails!
+
+Finally, I used the `send_mail` function from R's `curl` library  to email each customized message to the right recipient. In the code below, I wrap `send_mail` in the `purrr` function `map2`, which loops through the list of customized messages and emails simultaneously.
+
+```{r}
+#| message: false
+#| warning: false
+#| results: false
+# Send all emails
+map2(
+  .x = message,
+  .y = emails,
+  .f = ~ send_mail(
+    mail_from = sender,
+    mail_rcpt = .y,
+    message = .x,
+    smtp_server = "smtps://smtp.gmail.com",
+    username = sender,
+    password  = pw,
+    verbose = FALSE
+  )
+)
+```
+
+And that's it. Within a few moments, my test emails hit my inbox.
+
+Found a bug? Got a comment, criticism or suggestion for improvement? Drop me a note: `adipierro.edsource.org`.
