@@ -1,6 +1,6 @@
 ---
 title: "Code: A neat mail merge trick in R"
-date: "2025-06-27"
+date: "2025-07-26"
 categories: [code]
 ---
 
